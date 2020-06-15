@@ -1,0 +1,5 @@
+После версии ~72 (https://ftp.mozilla.org/pub/firefox/releases/) в firefox перестал работать uBlock origin. Вот фикс:
+
+В about:config:
+dom.quotaManager.useDOSDevicePathSyntax = false
+network.file.disable_unc_paths = false
