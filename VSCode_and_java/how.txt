@@ -1,0 +1,15 @@
+Для VSCode-win32-x64-1.47.0.zip
+CTRL+SHIFT+P - открыть "Палитру команд"
+
+1) Скачать: https://code.visualstudio.com/#alt-downloads лучше .zip (portable)
+2) Code.exe
+3) Слева "плагины" там Russian Language Pack for Visuall ...
+4) restart
+5) Установить Java Extension Pack. На момент 13.07.2020 включает плагины:
+Language support for Java ™ for Visual Studio Code
+Visual Studio IntelliCode
+Debugger for Java
+Maven for Java
+Java Test Runner
+Java Dependency Viewer
+6) restart

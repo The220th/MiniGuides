@@ -1,0 +1,7 @@
+md5sum [опции] [файл]
+
+или
+
+md5sum [file]
+
+https://losst.ru/proverka-kontrolnoj-summy-linux

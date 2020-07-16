@@ -1,0 +1,4 @@
+certutil -hashfile [file]
+По умолчанию утилита считает хеш-сумму с помощью SHA1
+Если хотите использовать другой, пожалуйста, доступны MD5 MD4 MD2 SHA512 SHA384 SHA256 SHA1. Например:
+Certutil -hashfile [file] MD5
