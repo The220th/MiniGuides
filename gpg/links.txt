@@ -1,0 +1,19 @@
+[symmetric]
+https://www.nas.nasa.gov/hecc/support/kb/using-gpg-to-encrypt-your-data_242.html
+
+[guides]
+https://m.habr.com/ru/post/358182/
+https://eax.me/gpg/
+
+[list of commands]
+http://manpages.ubuntu.com/manpages/precise/ru/man1/gpg.1.html
+
+[gpg and ssh]
+https://qastack.ru/superuser/360507/are-gpg-and-ssh-keys-interchangable
+https://lists.gnupg.org/pipermail/gnupg-users/2016-October/056879.html
+https://www.linode.com/docs/security/authentication/gpg-key-for-ssh-authentication/
+https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+https://gist.github.com/andrewlkho/7373190
+
+openpgp2ssh
+http://manpages.ubuntu.com/manpages/bionic/man1/openpgp2ssh.1.html

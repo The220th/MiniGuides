@@ -1,0 +1,9 @@
+sudo apt update
+sudo apt install wine
+Идем в наш домашний каталог и создаем новую директорию. Например "wineC" (стандартно .../.wine)
+WINEPREFIX="/home/username/wineС" winecfg
+/*Просто посмотреть и закрыть*/
+/*Скопировать всё из С:\\windows\fonts какой-нибудь винды в /home/username/wineС/drive_c/windows/fonts*/
+/*запускать всю парашу теперь так=(*/
+WINEPREFIX="/home/username/wineС" wine [Путь до exe]
+или без префикса WINEPREFIX. Но тогда будет использоваться .../.wine

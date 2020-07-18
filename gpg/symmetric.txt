@@ -1,0 +1,9 @@
+Чтобы зашифровать:
+gpg --cipher-algo AES256 --output [file out].gpg --symmetric [file in]
+иногда лучше так:
+gpg --armor --no-use-agent --cipher-algo AES256 --output [file out].gpg --symmetric [file in]
+--armor - шифрует с одним из видов кодировки Base64, чтобы потом можно было файл отправить текстом.
+--no-use-agent - устаревшая команда, выключающая gpg-agent, ведь он хранит временно введённый пароль. Сейчас не работает.
+
+Расшифровать:
+gpg --output [file out] --decrypt [file in].gpg
