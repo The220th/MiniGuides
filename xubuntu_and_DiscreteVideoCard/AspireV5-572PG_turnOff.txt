@@ -1,0 +1,28 @@
+Сгорела видеокарта NVIDIA GeForce GT 750M. Теперь мешает работать. Нужно вырубить на ноуте Aspire V5-572PG. ОС стоит xubuntu 20
+
+Использовался этот гайд: https://github.com/Bumblebee-Project/bbswitch, но может быть поможет это: https://wiki.archlinux.org/index.php/Kernel_module_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)#%D0%97%D0%B0%D0%BF%D1%80%D0%B5%D1%82_%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8
+или
+https://www.reddit.com/r/linux/comments/78is1r/complete_disable_of_discrete_gpu/
+
+Просто пишем команды:
+mkdir ~/tmp
+cd ~/tmp
+git clone https://github.com/Bumblebee-Project/bbswitch
+cd bbswitch
+[может быть сначала это сделать без рута "make"]
+sudo make install
+sudo make load
+tee /proc/acpi/bbswitch <<<OFF
+dmesg |tail -1
+[Если ...refusing OFF или ... is OOF, то на правильном пути]
+modprobe bbswitch load_state=0 unload_state=1
+cd /etc/modprobe.d
+touch bbswitch.conf
+nano bbswitch.conf
+[тут внизу написать "bbswitch load_state=0" и не забыть нажать enter]
+cd /etc/modules-load.d
+touch bbswitch.conf
+nano bbswitch.conf
+[тут написать просто "bbswitch" и не забыть нажать enter]
+sudo update-initramfs -u
+Теперь должно всё работать=/ Если не выключается ПК, то прочитайте всё же ~/tmp/bbswitch/README.MD
