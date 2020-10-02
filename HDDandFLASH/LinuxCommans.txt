@@ -1,0 +1,6 @@
+ls /dev | grep sd* - посмотреть какие диски подключены "железно"
+sudo fdisk -l - посмотреть иформацию о подключённых дисках
+mount | grep sdb - посмотреть, что замоунчено
+sudo umount [/dev/sdb1] - отмоунтить "диск"
+sudo mount [/dev/sdb1] [/media/"name"/] - замоунтить "диск"
+sudo ntfsfix [/dev/sdb1] - починить файловую систему NTFS
