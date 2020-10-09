@@ -1,0 +1,34 @@
+С помощью Python3 можно легко сделать бота, который будет кликать мышкой в определённое место или нажимать определённую(ые) клавишу(и), когда "увидит" определённый шаблон (кнопку или ещё кто-нибудь).
+
+Например, чтобы узнать цвет определённого пикселя нужно:
+from ctypes import windll
+hdc = windll.user32.GetDC(0)
+color = windll.gdi32.GetPixel(hdc, x, y)
+print(color)# (r, g, b) -> int
+
+Чтобы сделать скриншот всего, что видно на экране:
+import pyautogui
+screen = pyautogui.screenshot("screenshot.png") #Делает скриншот и заодно сохраняет его под именем "screenshot.png"
+print(screen) # инфа о скриншоте
+
+Чтобы сделать скриншот определённой области того, что видно на экране:
+import pyautogui
+screen = pyautogui.screenshot('screenshot.png', region=(x, y, dx, dy)) #Делает скриншот и заодно сохраняет его под именем "screenshot.png"
+print(screen) # инфа о скриншоте
+
+Узнать координаты курсора:
+import pyautogui
+print(pyautogui.position())
+
+Определить координату верхнего левого угла фотографии на скрине, если она есть:
+template = pyautogui.locateOnScreen("фотография кнопки.png")
+print(template) - координата, если нет, то None
+
+Нажать клавишу, например, пробел:
+import pyautogui
+pyautogui.press("space")
+
+Сделать задержку на 3 секунды:
+time.sleep(3)
+
+Или можно использовать AutoHotKey (https://www.autohotkey.com/). Рядом в файле "FallGuysFarmBot.ahk" содержится скрипт, который фармит валюту,  просматривая определённые пиксели
