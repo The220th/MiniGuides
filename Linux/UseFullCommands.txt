@@ -1,0 +1,14 @@
+[Добавить пользователя с root]
+useradd -m -s /bin/bash UserName
+usermod -aG sudo UserName
+passwd UserName
+
+[Посмотреть открытые порты]
+sudo netstat -tulpn | grep LISTEN
+
+[java]
+sudo apt install openjdk-11-jdk
+sudo apt install openjdk-8-jdk
+
+sudo update-java-alternatives --list
+sudo update-java-alternatives --set [tab]
