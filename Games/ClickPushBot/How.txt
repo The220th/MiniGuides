@@ -6,6 +6,8 @@ hdc = windll.user32.GetDC(0)
 color = windll.gdi32.GetPixel(hdc, x, y)
 print(color)# (r, g, b) -> int
 
+pip install pyautogui
+
 Чтобы сделать скриншот всего, что видно на экране:
 import pyautogui
 screen = pyautogui.screenshot("screenshot.png") #Делает скриншот и заодно сохраняет его под именем "screenshot.png"
@@ -13,12 +15,19 @@ print(screen) # инфа о скриншоте
 
 Чтобы сделать скриншот определённой области того, что видно на экране:
 import pyautogui
-screen = pyautogui.screenshot('screenshot.png', region=(x, y, dx, dy)) #Делает скриншот и заодно сохраняет его под именем "screenshot.png"
+screen = pyautogui.screenshot("screenshot.png", region=(x, y, dx, dy)) #Делает скриншот и заодно сохраняет его под именем "screenshot.png"
 print(screen) # инфа о скриншоте
 
 Узнать координаты курсора:
 import pyautogui
 print(pyautogui.position())
+
+Нажать и отпустить ПКМ или ЛКМ
+pyautogui.mouseDown(button='left') #зажать ЛКМ
+#pyautogui.mouseDown(button='right') # или зажать ПКМ
+time.sleep(0.1)
+pyautogui.mouseUp(button='left') #отдать ЛКМ
+#pyautogui.mouseUp(button='right') #или отжать ПКМ
 
 Определить координату верхнего левого угла фотографии на скрине, если она есть:
 template = pyautogui.locateOnScreen("фотография кнопки.png")
@@ -27,8 +36,25 @@ print(template) - координата, если нет, то None
 Нажать клавишу, например, пробел:
 import pyautogui
 pyautogui.press("space")
+pyautogui.keyDown("space") # Зажать клавишу
+time.sleep(1)             # На одну секунду
+pyautogui.keyUp("space") # Отжать клавишу
+
+grayscale позволяет сделать скриншот "чёрно-белым", поэтопу поиск выполняется быстрее
+import pyautogui
+target = pyautogui.locateOnScreen("screenshot.png", grayscale=True)
+
+Получить цвет на скриншоте
+import pyautogui
+im = pyautogui.screenshot()
+im.getpixel((100, 200))
+
+Можно также установить талерантность. Например будут проверен пиксель на цвет в пределе (130--150, 115--135, 124--144) на координате (100, 200)
+import pyautogui
+pyautogui.pixelMatchesColor(100, 200, (140, 125, 134), tolerance=10)
 
 Сделать задержку на 3 секунды:
+import time
 time.sleep(3)
 
 Или можно использовать AutoHotKey (https://www.autohotkey.com/). Рядом в файле "FallGuysFarmBot.ahk" содержится скрипт, который фармит валюту,  просматривая определённые пиксели

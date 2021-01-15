@@ -1,0 +1,10 @@
+Гайды на wine:
+https://vk.com/@noostyche_llc-prakticheskoe-rukovodstvo-po-ispolzovaniu-wine
+https://habr.com/ru/post/124606/
+
+Видео, которые мб помогут:
+https://www.youtube.com/watch?v=gBMkp1a8B2U
+https://www.youtube.com/watch?v=fv9zcUD5Tp8
+
+Если используете репаки (или не находит isskin.dll):
+https://900913.ru/2018/06/27/isskindll-wine-macos-linux/

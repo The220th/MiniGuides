@@ -1,0 +1,39 @@
+После того как доделали wine и steam сделали свою версию proton, можно по-пономальному играть в игры на linux. Даже, если вы например, купили игру в GOG.com
+Посмотреть текущее состояние работоспособности игр можно тут: https://www.protondb.com/
+На самом деле некоторые игры будут реально быстрее работать из-за того, что некоторые "эффекты" "обрезаются".
+
+Начнём по-порядку:
+
+1) Сначала обновим драйвера на видеокарту (гайд https://losst.ru/ustanovka-drajvera-nvidia-v-ubuntu-18-04):
+Рассмотрю на примере Xubuntu и карточки nvidia (без консоли):
+   *Кликаем на Additional Drivers (https://imgur.com/a/FnH0Qhk)
+   *Выбираем с самой большой циферкой или recommended (https://imgur.com/a/310fpiV), далее нажать на "Apply Changes" и долго ждать
+
+2) Установка steam:
+> sudo apt install steam
+> steam
+Далее зайдите в настройки -> Steam Play -> Enable Steam Play for all other titles
+Выберите какую-нибудь последнюю версию proton (на момент написания "гайда" это Proton Experimental)
+Запустите какую-нибудь игру, которая вообще не предназначена для Linux
+Установится Proton
+Теперь просто запустить игру
+
+3) Для других программ для Windows и игр, которые не из стима (например купленные в GOG.com)
+
+3.1) Запуск через стим:
+В нижнем левом углу найдите "ADD A GAME", кликните и выберите "Add a Non-Steam Game...", найдите путь до exe, и кликните на "ADD SELECTED PROGRAMS"
+Далее ПКМ по игре/программе, которую вы добавили, и выбрать "Properties" -> COMPATIBILITY -> Forse the use of a specific Steam Play compatibility tool -> proton Experimental
+Далее запуск...
+Если ничего не получилось, то:
+   *Найдите папку с протоном. В моём случае steam "выбрал" эту: "/home/[username]/.steam/steam/steamapps/common/Proton - Experimental/dist/share/default_pfx/"
+   *Теперь установите winetricks:
+   *Запустите так:
+   *WINEPREFIX="/home/[username]/.steam/steam/steamapps/common/Proton - Experimental/dist/share/default_pfx/dosdevices" winetricks
+   *Далее Select the default wineprefix -> Browse files, чтобы убедиться, что выбрана правильная папка -> Install a Windows DLL or component и выбирайте чего не хватает (Google в помощь)
+Или установите и запустите как можно больше игры из вашей библиотеки steam, чтобы установилось как можно больше утилит и программ
+
+3.2) Wine:
+sudo apt install wine
+Скопировать всё из "С:\\windows\fonts" какой-нибудь винды в "/home/[username]/wineС/drive_c/windows/fonts"
+Далее в winecfg и winetricks настраиваем как нужно и запускаем:
+wine "путь до exe"
