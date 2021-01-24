@@ -8,3 +8,6 @@ https://www.youtube.com/watch?v=fv9zcUD5Tp8
 
 Если используете репаки (или не находит isskin.dll):
 https://900913.ru/2018/06/27/isskindll-wine-macos-linux/
+
+Проблема с захватом мыши после alt+tab:
+https://www.gamingonlinux.com/forum/topic/3502

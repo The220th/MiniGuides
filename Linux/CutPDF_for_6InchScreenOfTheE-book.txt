@@ -1,0 +1,151 @@
+https://habr.com/ru/post/130308/
+
+sudo add-apt-repository ppa:malteworld/ppa
+sudo apt update
+sudo apt-get install pdftk
+sudo apt-get install ImageMagick
+sudo apt-get install libtiff5
+sudo apt-get install djview
+//https://stackoverflow.com/questions/42928765/convertnot-authorized-aaaa-error-constitute-c-readimage-453
+sudo nano /etc/ImageMagick-6/policy.xml
+comment line: <!-- <policy domain="coder" rights="none" pattern="MVG" /> -->
+change line: <policy domain="coder" rights="none" pattern="PDF" /> to <policy domain="coder" rights="read|write" pattern="PDF" />
+add line: <policy domain="coder" rights="read|write" pattern="LABEL" />
+
+=================================================================================================================================
+#!/bin/bash
+# скрипт для преобразования PDF и DJVU файлов в формат для эклектронной книги 800x600
+
+# использование: скрипт документ -in_[pdf|djvu] -out_[pdf|djvu] -img_format_[png|jpg]
+in_format=$2
+out_format=$3
+img_format=$4
+
+if [ "$img_format" = "-img_format_png" ];
+then
+  img_format=png
+else
+  img_format=jpg
+fi
+
+mask="*.*"
+
+if [ "$in_format" = "-in_djvu" ];
+then
+   # если это DJVU то приобразовываем его в многостраничный TIFF
+   ddjvu -format=tiff $1 1.tiff
+   # режем получившийся TIFF в по страницам
+   tiffsplit 1.tiff
+   rm 1.tiff
+   mask="x*.tif"
+else
+   # режем PDF по страницам
+   pdftk $1 burst
+   mask="pg_*.pdf"
+fi
+
+pages=""
+
+# обработать все страницы
+for p in `ls -1 $mask`; do
+
+   # конвертируем страничку в JPG и преобразуем в оттенки серого
+   if [ "$in_format" = "-in_djvu" ];
+   then
+      convert -colorspace gray -normalize -contrast $p $p.${img_format}
+   else
+      convert -density 300 -colorspace gray -normalize -contrast $p $p.${img_format}
+   fi
+
+   rm $p
+
+   p=${p}.${img_format}
+
+   # обрезаем все поля автоматически
+   convert -trim +repage $p $p
+   
+   # вырезаем верхнюю часть картинки
+   convert -gravity North -crop 100%x35% +repage $p 1_$p
+   # вырезаем вторую часть картинки
+   convert -gravity Center -crop 100%x35% +repage $p 2_$p
+   # вырезаем третью часть картинки
+   convert -gravity South -crop 100%x35% +repage $p 3_$p
+
+   rm $p
+   
+   # меняем разрешение на 800х600
+   convert -scale 800x600! 1_$p 1_$p
+   convert -scale 800x600! 2_$p 2_$p
+   convert -scale 800x600! 3_$p 3_$p
+   
+   # разворачиваем на 90 градусов
+   convert -rotate 90 1_$p 1_$p
+   convert -rotate 90 2_$p 2_$p
+   convert -rotate 90 3_$p 3_$p
+   
+   # улучшаем качество картинки
+   convert -sharpen 0.01 1_$p 1_$p
+   convert -sharpen 0.01 2_$p 2_$p
+   convert -sharpen 0.01 3_$p 3_$p
+   
+   # если выходной файл DJVU
+   if [ "$out_format" = "-out_djvu" ];
+   then
+      # конвертируем странички в djvu-формат
+      c44 -dpi 150 1_$p 1_$p.djvu
+      c44 -dpi 150 2_$p 2_$p.djvu
+      c44 -dpi 150 3_$p 3_$p.djvu
+	  
+      # список страничек
+      pages=${pages}' 1_'${p}'.djvu 2_'${p}'.djvu 3_'${p}'.djvu'
+    else
+      convert -define pdf:use-trimbox=true -density 200 1_$p 1_$p.pdf
+      convert -define pdf:use-trimbox=true -density 200 2_$p 2_$p.pdf
+      convert -define pdf:use-trimbox=true -density 200 3_$p 3_$p.pdf
+      
+      # список страничек
+      pages=${pages}' 1_'${p}'.pdf 2_'${p}'.pdf 3_'${p}'.pdf'
+    fi
+
+    rm 1_$p 2_$p 3_$p
+done
+
+# создаем выходной файл книжки
+if [ "$out_format" = "-out_djvu" ];
+then
+  # собрать в единый DjVu
+  djvm -c out.djvu $pages
+else
+  # собрать в единый PDF
+  pdftk $pages cat output out.pdf
+fi
+
+rm $pages
+===============================================================================================================================
+
+sudo bash script.sh NameOfPdfFile.pdf
+
+//Разбить большой PDF на маленькие
+===============================================================================================================================
+print("Input Name of File (ex: out.pdf)")
+NameOfFile = input()
+print("Input Amount of Pages (ex: 2598)")
+AmountOfPages = int(input())
+print("Input Amount of Pages, after cut (ex: 150)")
+AmountOfPagesAfterCut = int(input())
+
+Dot = NameOfFile.rfind('.')
+UnderDot = NameOfFile[0:Dot]
+AfterDotAndDot = NameOfFile[Dot:len(NameOfFile)]
+
+CurrentPage = 1
+Circle = 1
+while(AmountOfPages > AmountOfPagesAfterCut):
+	print("pdftk " + NameOfFile + " cat " + str(CurrentPage) + "-" + str(CurrentPage+AmountOfPagesAfterCut) + " output " + UnderDot + str(Circle) + AfterDotAndDot)
+	Circle += 1
+	CurrentPage += AmountOfPagesAfterCut
+	AmountOfPages -= AmountOfPagesAfterCut
+print("pdftk " + NameOfFile + " cat " + str(CurrentPage) + "-" + str(CurrentPage+AmountOfPages-1) + " output " + UnderDot + str(Circle) + AfterDotAndDot)
+===============================================================================================================================
+
+python PythonScript.py
