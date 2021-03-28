@@ -37,3 +37,13 @@ sudo apt install wine
 Скопировать всё из "С:\\windows\fonts" какой-нибудь винды в "/home/[username]/wineС/drive_c/windows/fonts"
 Далее в winecfg и winetricks настраиваем как нужно и запускаем:
 wine "путь до exe"
+
+
+[MORDHAU fix]
+1) sudo apt install gamemode или https://github.com/FeralInteractive/gamemode
+2) https://github.com/GloriousEggroll/proton-ge-custom
+2.1) В релизах скачать последнюю версию. На данный момент (13.02.2021) это Proton-6.1-GE-2.tar.gz
+2.2) Выключить steam
+2.3) Разорхивировать в ~/.steam/root/compatibilitytools.d/ (если нет compatibilitytools.d, то создать)
+2.4) Включить steam и в настройках игры выбрать этот самый кастомный proton Proton-6.1-GE-2
+3) Параметры запуска: PROTON_NO_ESYNC=1 PROTON_NO_GLSL=1 gamemoderun %command%

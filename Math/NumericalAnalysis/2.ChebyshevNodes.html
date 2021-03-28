@@ -1,0 +1,97 @@
+﻿<h1>Многочлен Чебышёва</h1>
+<p>Возможно всё было так:
+Чебышёв нашёл крутой многочлен n-ой степени: <img src="https://i.upmath.me/svg/T_n%20%3D%20cos(n%20%5Ccdot%20arccos(x))" alt="T_n = cos(n \cdot arccos(x))" /></p>
+<p>Назвали его многочленом Чебышева.
+Выглядит как не многочлен, но это именно он. Немного подумав можно прийти к такому выводу:</p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/%5Ccos((n%2B1)%20%5Ccdot%20%5Carccos(x))%20%3D%202%20%5Ccdot%20%5Ccos(%5Carccos(x))%20%5Ccdot%20%5Ccos(n%20%5Ccdot%20%5Carccos(x))%20-%20%5Ccos((n-1)%20%5Ccdot%20%5Carccos(x))" alt="\cos((n+1) \cdot \arccos(x)) = 2 \cdot \cos(\arccos(x)) \cdot \cos(n \cdot \arccos(x)) - \cos((n-1) \cdot \arccos(x))" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/%5Ccos((n%2B1)%20%5Ccdot%20%5Carccos(x))%20%3D%202%20%5Ccdot%20x%20%5Ccdot%20%5Ccos(n%20%5Ccdot%20%5Carccos(x))%20-%20%5Ccos((n-1)%20%5Ccdot%20%5Carccos(x))" alt="\cos((n+1) \cdot \arccos(x)) = 2 \cdot x \cdot \cos(n \cdot \arccos(x)) - \cos((n-1) \cdot \arccos(x))" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T_%7Bn%2B1%7D%20%3D%202%20%5Ccdot%20x%20%5Ccdot%20T_n%20-%20T_%7Bn-1%7D" alt="T_{n+1} = 2 \cdot x \cdot T_n - T_{n-1}" /></p>
+<p>Всё равно не похоже на многочлен…</p>
+<p>Воспользуемся этой формулой в явном виде:</p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T_0%20%3D%20%5Ccos(0%20%5Ccdot%20%5Carccos(x))%20%3D%201" alt="T_0 = \cos(0 \cdot \arccos(x)) = 1" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T_1%20%3D%20%5Ccos(1%20%5Ccdot%20%5Carccos(x))%20%3D%20x" alt="T_1 = \cos(1 \cdot \arccos(x)) = x" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T_2%20%3D%20%202%20%5Ccdot%20x%20%5Ccdot%20T_1%20-%20T_0%20%3D%202x%5E2%20-%201" alt="T_2 =  2 \cdot x \cdot T_1 - T_0 = 2x^2 - 1" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T_3%20%3D%202%20%5Ccdot%20x%20%5Ccdot%20T_2%20-%20T_1%20%3D%204x%5E3%20-%203x" alt="T_3 = 2 \cdot x \cdot T_2 - T_1 = 4x^3 - 3x" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T_4%20%3D%202%20%5Ccdot%20x%20%5Ccdot%20T_3%20-%20T_2%20%3D%208x%5E4%20-%208x%5E2%20%2B%201" alt="T_4 = 2 \cdot x \cdot T_3 - T_2 = 8x^4 - 8x^2 + 1" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T_5%20%3D%202%20%5Ccdot%20x%20%5Ccdot%20T_4%20-%20T_3%20%3D%2016x%5E5%20-%2020x%5E3%20%2B%205x" alt="T_5 = 2 \cdot x \cdot T_4 - T_3 = 16x^5 - 20x^3 + 5x" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/..." alt="..." /></p>
+<p>Теперь видно, что именно многочлены. Проверьте, например так:</p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T_5(3.2)%20%3D%20%5Ccos(5%20%5Ccdot%20%5Carccos(3.2))%20%3D%204729.35..." alt="T_5(3.2) = \cos(5 \cdot \arccos(3.2)) = 4729.35..." /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T_5(3.2)%20%3D%2016%20%5Ccdot%20(3.2)%5E5%20-%2020%20%5Ccdot%20(3.2)%5E3%20%2B%205%20%5Ccdot%20(3.2)%20%3D%204729.35..." alt="T_5(3.2) = 16 \cdot (3.2)^5 - 20 \cdot (3.2)^3 + 5 \cdot (3.2) = 4729.35..." /></p>
+<p>Зачем всё это?
+Есть очень крутая особенность у этих многочленов:</p>
+<ol>
+<li>
+<p>На промежутке [-1, 1]: <img src="https://i.upmath.me/svg/%5Cmax_%7B%5B-1%2C%201%5D%7D(T_n)%20%3D%201" alt="\max_{[-1, 1]}(T_n) = 1" />, <img src="https://i.upmath.me/svg/%5Cmin_%7B%5B-1%2C%201%5D%7D(T_n)%20%3D%20-1" alt="\min_{[-1, 1]}(T_n) = -1" /></p>
+</li>
+<li>
+<p>Старший коэф. перед <img src="https://i.upmath.me/svg/x%5En" alt="x^n" /> равен <img src="https://i.upmath.me/svg/2%5E%7B(n-1)%7D" alt="2^{(n-1)}" /></p>
+</li>
+</ol>
+<p>Давайте нормализируем многочлен:</p>
+<p>Пусть <img src="https://i.upmath.me/svg/T%5E*_n%20%3D%20%5Cfrac%7BT_n%7D%7B2%5E%7B(n-1)%7D%20%7D" alt="T^*_n = \frac{T_n}{2^{(n-1)} }" /></p>
+<p>Зачем нужен <img src="https://i.upmath.me/svg/T%5E*_n" alt="T^*_n" />? У него есть ещё более крутые особенности:</p>
+<ol>
+<li>
+<p>На промежутке [-1, 1]: <img src="https://i.upmath.me/svg/%5Cmax_%7B%5B-1%2C%201%5D%7D(T%5E*_n)%20%3D%20%5Cfrac%7B1%7D%7B%202%5E%7B(n-1)%7D%20%7D" alt="\max_{[-1, 1]}(T^*_n) = \frac{1}{ 2^{(n-1)} }" />, <img src="https://i.upmath.me/svg/%5Cmin_%7B%5B-1%2C%201%5D%7D(T%5E*_n)%20%3D%20-%5Cfrac%7B1%7D%7B%202%5E%7B(n-1)%7D%20%7D" alt="\min_{[-1, 1]}(T^*_n) = -\frac{1}{ 2^{(n-1)} }" /></p>
+</li>
+<li>
+<p>Старший коэф. перед <img src="https://i.upmath.me/svg/x%5En" alt="x^n" /> равен 1</p>
+</li>
+</ol>
+<p>1-ая особенность особенно значимая</p>
+<h1>Узлы Чебышёва</h1>
+<p>Теперь нужно найти корни этого многочлена:</p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T%5E*_n%20%3D%200" alt="T^*_n = 0" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/%5Cfrac%7B%5Ccos(n%20%5Ccdot%20%5Carccos(x))%7D%7B2%5E%7B(n-1)%7D%7D%20%3D%200" alt="\frac{\cos(n \cdot \arccos(x))}{2^{(n-1)}} = 0" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/%5Ccos(n%20%5Ccdot%20%5Carccos(x))%20%3D%200" alt="\cos(n \cdot \arccos(x)) = 0" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/n%20%5Ccdot%20%5Carccos(x)%20%3D%20%5Cfrac%7B%5Cpi%7D%7B2%7D%20%2B%20%5Cpi%20%5Ccdot%20k" alt="n \cdot \arccos(x) = \frac{\pi}{2} + \pi \cdot k" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/%5Carccos(x)%20%3D%20%5Cfrac%7B%5Cpi%7D%7B2%20%5Ccdot%20n%7D%20%2B%20%5Cfrac%7B%5Cpi%20%5Ccdot%20k%7D%7Bn%7D" alt="\arccos(x) = \frac{\pi}{2 \cdot n} + \frac{\pi \cdot k}{n}" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/x%20%3D%20%5Ccos(%5Cfrac%7Bpi%7D%7B2%20%5Ccdot%20n%7D%20%2B%20%5Cfrac%7B%5Cpi%20%5Ccdot%20k%7D%7Bn%7D)" alt="x = \cos(\frac{pi}{2 \cdot n} + \frac{\pi \cdot k}{n})" /></p>
+<p><img src="https://i.upmath.me/svg/x_k%20%3D%20%5Ccos(%20%5Cfrac%7B%20(2%20%5Ccdot%20k%20%2B%201)%20%5Ccdot%20%5Cpi%20%7D%7B2%20%5Ccdot%20n%7D%20)" alt="x_k = \cos( \frac{ (2 \cdot k + 1) \cdot \pi }{2 \cdot n} )" />, k = 0, 1, 2, …, n-1</p>
+<p><a name="abcde"></a>Замечу: Тут именно от 0 до n-1. Т. е. кол-во узлов = n шт</p>
+<p>Т. е. <img src="https://i.upmath.me/svg/T%5E*_n%20%3D%20%5Cfrac%7B1%7D%7B2%5E%7B(n-1)%7D%7D%20%5Ccdot%20(x-x_0)%20%5Ccdot%20(x-x_1)%20%5Ccdot%20..." alt="T^*_n = \frac{1}{2^{(n-1)}} \cdot (x-x_0) \cdot (x-x_1) \cdot ..." /></p>
+<p>Находим на отрезке от [-1, 1] узлы <img src="https://i.upmath.me/svg/x_k" alt="x_k" />:</p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/x_1%20%3D%20%5Ccos(%20%5Cfrac%7B%20(2%20%5Ccdot%200%20%2B%201)%20%5Ccdot%20%5Cpi%20%7D%7B2%20%5Ccdot%20n%7D%20)" alt="x_1 = \cos( \frac{ (2 \cdot 0 + 1) \cdot \pi }{2 \cdot n} )" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/x_2%20%3D%20%5Ccos(%20%5Cfrac%7B%20(2%20%5Ccdot%201%20%2B%201)%20%5Ccdot%20%5Cpi%20%7D%7B2%20%5Ccdot%20n%7D%20)" alt="x_2 = \cos( \frac{ (2 \cdot 1 + 1) \cdot \pi }{2 \cdot n} )" /></p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/..." alt="..." /></p>
+<p>И этим иксам [<img src="https://i.upmath.me/svg/x_1" alt="x_1" />, <img src="https://i.upmath.me/svg/x_2" alt="x_2" />, …] соответствуют игреки [<img src="https://i.upmath.me/svg/y_1%3Df(x_1)" alt="y_1=f(x_1)" />, <img src="https://i.upmath.me/svg/y_2%3Df(x_2)" alt="y_2=f(x_2)" />, …]. Всё, можно интерполировать</p>
+<p>Почему именно так? Помните оценку погрешности интерполяционных многочленов?</p>
+<h1>Оценка погрешности</h1>
+<p><img src="https://i.upmath.me/svg/%5Cmax_%7B%5B-1%2C%201%5D%7D(%7Cf(x)-L_n(x)%7C)%20%5Cleq%20%5Cfrac%7BM_%7Bn%2B1%7D%7D%20%7B(n%2B1)!%7D%20%5Ccdot%20%5Cmax_%7B%5B-1%2C1%5D%7D(%7C%5Comega_n(x)%7C)" alt="\max_{[-1, 1]}(|f(x)-L_n(x)|) \leq \frac{M_{n+1}} {(n+1)!} \cdot \max_{[-1,1]}(|\omega_n(x)|)" />, где <img src="https://i.upmath.me/svg/M_%7Bn%2B1%7D%3D%5Cmax_%7B%5B-1%2C1%5D%7D(%5Cfrac%7Bd%5E%7B(n%2B1)%7Df%7D%7Bdx%5E%7B(n%2B1)%7D%7D)" alt="M_{n+1}=\max_{[-1,1]}(\frac{d^{(n+1)}f}{dx^{(n+1)}})" />. То есть производная (n+1)-го порядка <img src="https://i.upmath.me/svg/f%5E%7B(n%2B1)%7D_x" alt="f^{(n+1)}_x" /></p>
+<p>Что такое <img src="https://i.upmath.me/svg/%5Comega_n" alt="\omega_n" />? Это и есть <img src="https://i.upmath.me/svg/T%5E*_%7Bn%2B1%7D" alt="T^*_{n+1}" />. Откуда у <img src="https://i.upmath.me/svg/T%5E*" alt="T^*" /> n+1? Потому что точек (n+1) шт (<a href="#abcde">см</a>)</p>
+<p>Помните его max и min из особенности 1? <img src="https://i.upmath.me/svg/%5Cmax_%7B%5B-1%2C1%5D%7D(%7C%5Comega_n%7C)%20%3D%20%5Cmax_%7B%5B-1%2C1%5D%7D(%7CT%5E*_%7Bn%2B1%7D%7C)%20%3D%20%5Cfrac%7B1%7D%7B%202%5En%20%7D" alt="\max_{[-1,1]}(|\omega_n|) = \max_{[-1,1]}(|T^*_{n+1}|) = \frac{1}{ 2^n }" />. Т. е. оооооочень маленькое число уже хотя бы при n=5</p>
+<p>Т.е. <img src="https://i.upmath.me/svg/%5Cmax_%7B%5B-1%2C%201%5D%7D(%7Cf(x)-L_n(x)%7C)%7D%20%5Cleq%20%5Cfrac%7BM_%7Bn%2B1%7D%7D%7B(n%2B1)!%7D%20%5Ccdot%20%5Cfrac%7B1%7D%7B2%5En%7D" alt="\max_{[-1, 1]}(|f(x)-L_n(x)|)} \leq \frac{M_{n+1}}{(n+1)!} \cdot \frac{1}{2^n}" /></p>
+<p>Но это ведь на отрезке [-1, 1]. Кому это нужно? Ну перенесём на наш отрезок [a, b] (аффинное преобразование):</p>
+<p><img src="https://i.upmath.me/svg/x_k%20%3D%20%5Cfrac%7B1%7D%7B2%7D%20%5Ccdot%20((b-a)%20%5Ccdot%20%5Ccos(%20%5Cfrac%7B(2%20%5Ccdot%20k%20%2B%201)%20%5Ccdot%20%5Cpi%7D%7B2%20%5Ccdot%20n%20%2B%202%7D%20)%20%2B%20b%20%2B%20a)" alt="x_k = \frac{1}{2} \cdot ((b-a) \cdot \cos( \frac{(2 \cdot k + 1) \cdot \pi}{2 \cdot n + 2} ) + b + a)" />, k = 0, 1, …, n</p>
+<p>Вывод этой формулы - это путь ниндзя, и поэтому каждый его должен пройти сам, если, конечно, есть желание…</p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/T%5E*_n%20%3D%20%5Cfrac%7B1%7D%7B2%5E%7Bn-1%7D%7D%20%5Ccdot%20(x-x_0)%20%5Ccdot%20(x-x_1)%20%5Ccdot%20..." alt="T^*_n = \frac{1}{2^{n-1}} \cdot (x-x_0) \cdot (x-x_1) \cdot ..." /></p>
+<p>А что там с погрешностью? Это тоже путь ниндзя, но вот формула:</p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/%5Cmax_%7B%5Ba%2Cb%5D%7D(%7Cw_n(x)%7C)%20%3D%20%5Cfrac%7B(b-a)%5E%7B(n%2B1)%7D%7D%7B2%5E%7B(2%20%5Ccdot%20n%2B1)%7D%7D" alt="\max_{[a,b]}(|w_n(x)|) = \frac{(b-a)^{(n+1)}}{2^{(2 \cdot n+1)}}" /></p>
+<p>Т.е. погрешность:</p>
+<p align="center"><img align="center" src="https://i.upmath.me/svg/%5Cmax_%7B%5Ba%2C%20b%5D%7D(%7Cf(x)-L_n(x)%7C)%20%5Cleq%20%5Cfrac%7BM_%7Bn%2B1%7D%7D%7B(n%2B1)!%7D%20%5Ccdot%20%5Cfrac%7B(b-a)%5E%7B(n%2B1)%7D%7D%7B2%5E%7B(2%20%5Ccdot%20n%2B1)%7D%7D" alt="\max_{[a, b]}(|f(x)-L_n(x)|) \leq \frac{M_{n+1}}{(n+1)!} \cdot \frac{(b-a)^{(n+1)}}{2^{(2 \cdot n+1)}}" /></p>
+<p>где <img src="https://i.upmath.me/svg/M_%7Bn%2B1%7D%3D%5Cmax_%7B%5Ba%2Cb%5D%7D(%5Cfrac%7Bd%5E%7B(n%2B1)%7Df%7D%7Bdx%5E%7B(n%2B1)%7D%7D)" alt="M_{n+1}=\max_{[a,b]}(\frac{d^{(n+1)}f}{dx^{(n+1)}})" /></p>
+<p>Главное помнить, что n - это степень многочлена, а не количество узлов</p>
+<h1>Код</h1>
+<p>Что мы хотим вообще? Хотим функцию <code>findChebyshevNodes()</code>, которая бы просто вернула &quot;массив&quot; правильных &quot;иксов&quot;. Код будет на matlab, как бы сильно не хотелось обратного:</p>
+<pre><code class="language-matlab">% a - левая граница
+% b - правая граница
+% n - кол-во &quot;иксов&quot; (узлов)
+function res = findChebyshevNodes(a, b, n)
+n = n-1; % потому что в формуле используется степень многочлена, которая на 1 меньше кол-ва узлов
+res = zeros(1, n+1);
+for i = 1:(n+1)
+    res(i) = (1/2)*((b-a)*cos( ((2*(i-1)+1)*pi)/(2*n+2) ) + b + a);
+end
+</code></pre>
+<p>и заодно высчитать максимальную погрешность:</p>
+<pre><code class="language-matlab">%max[a, b](|f(x)-L_n(x)|) &lt;= (M_{n+1} / (n+1)!)*( (b-a)^(n+1) / (2^(2*n+1)) ), где M_{n+1}=max[a,b](d^(n+1)f/dx^(n+1))
+%Здесь n - это степень многочлена, а не кол-во точек (их на 1 больше)
+
+function res = findChebyshevDefect(n_dots)
+n = n_dots;
+a = 1;
+b = 71;
+res = ((здесь M_{n+1}) / factorial(n))*( (b-a)^n / (2^(2*n-1)) );
+</code></pre>
+<p>Дальше, зная &quot;иксы&quot;=X, найдём &quot;игреки&quot;=Y и подставим в какую-нибудь фукцию, которая делает интерполяцию.</p>

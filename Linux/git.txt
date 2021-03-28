@@ -1,0 +1,9 @@
+
+[Добавить публичный ключ на hitHub]
+https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+1) Авторизоваться на github.com
+2) ssh-keygen -t ed25519
+3) Проверьте, что shh-agent уже запущен (ps -C ssh-agent), иначе: ssh-agent -s
+4) ssh-add [your secret key]
+5) https://github.com/settings/keys и вставить содержимое [your public key] в окошечко new ssh key
+Теперь можно взаимодействовать со своими репозиториями, но вместо https://github.com/[yourNick]/[yourRepo] нужно использовать git@github.com:[yourNick]/[yourRepo].git

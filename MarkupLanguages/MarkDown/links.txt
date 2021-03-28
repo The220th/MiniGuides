@@ -1,0 +1,27 @@
+https://upmath.me/ - сайт позволяет объединять markdown и формулы LaTeX вместе: $$\frac{1}{5}$$
+
+https://www.codecogs.com/latex/eqneditor.php - позволяет создавать формулы как в LaTeX. Например: Введите формулу, потом просто вставьте то, что появится внизу
+
+https://markdowntohtml.com/ - md2html
+
+https://addons.mozilla.org/ru/firefox/addon/markdown-viewer-webext/ - расширение для firefox
+
+https://github.com/joeyespo/grip - Render local readme files before sending off to GitHub
+
+https://rentry.co/ - md online editor
+
+https://github.com/instant-markdown/vim-instant-markdown - vim-instant-markdown
+
+http://www.markdownpad.com/ - markdownpad
+
+
+
+Вставить картинку ![alt text](Isolated.png "Title")
+
+Ссылка:
+## my heading text {#mht}
+Some normal text here,
+including a [link to the header](#mht).
+или
+<a name="abcde"></a>
+потом: [link text](#abcde)

@@ -21,3 +21,11 @@ https://losst.ru/ustanovka-grub-customizer-v-ubuntu-18-04
 > sudo apt install grub-customizer
 > sudo grub-customizer
 И изменяем как нужно
+
+[После удаления раздела с Linux]
+1) Загрузиться в LiveCD
+2) sudo fdisk -l и ищем ваш диск
+3) sudo mount -o rw /dev/sd?1 /mnt/yourFolder
+4) sudo mkdir /mnt/yourFolder/grub2/
+5) sudo grub-install --no-floppy --root-directory=/mnt/yourFolder/grub2/ /dev/sd?
+5) sudo grub-install --boot-directory=/mnt/yourFolder/grub2/ /dev/sda
