@@ -1,0 +1,42 @@
+https://serverfault.com/questions/140622/how-can-i-port-forward-with-iptables
+
+
+
+Q:
+
+I want connections coming in on ppp0 on port 8001 to be routed to 192.168.1.200 on eth0 on port 8080.
+
+I've got these two rules
+
+-A PREROUTING  -p tcp -m tcp --dport 8001 -j DNAT --to-destination 192.168.1.200:8080
+
+-A FORWARD -m state -p tcp -d 192.168.1.200 --dport 8080 --state NEW,ESTABLISHED,RELATED -j ACCEPT
+
+and it doesn't work. What am I missing?
+
+
+A:
+
+
+First of all - you should check if forwarding is allowed at all:
+
+cat /proc/sys/net/ipv4/conf/ppp0/forwarding 
+cat /proc/sys/net/ipv4/conf/eth0/forwarding 
+
+If both returns 1 it's ok. If not do the following:
+
+echo '1' | sudo tee /proc/sys/net/ipv4/conf/ppp0/forwarding
+echo '1' | sudo tee /proc/sys/net/ipv4/conf/eth0/forwarding
+
+Second thing - DNAT could be applied on nat table only. So, your rule should be extended by adding table specification as well (-t nat):
+
+iptables -t nat -A PREROUTING -p tcp -i ppp0 --dport 8001 -j DNAT --to-destination 192.168.1.200:8080
+iptables -A FORWARD -p tcp -d 192.168.1.200 --dport 8080 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+
+Both rules are applied only to TCP traffic (if you want to alter UDP as well, you need to provide similar rules but with -p udp option set).
+
+Last, but not least is routing configuration. Type:
+
+ip route
+
+and check if 192.168.1.0/24 is among returned routing entries.
